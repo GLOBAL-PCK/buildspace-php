@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     libssl1.0.0 \
     unzip \
     unoconv \
+    postgresql-client-15 \
     git \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
