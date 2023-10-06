@@ -30,7 +30,7 @@ RUN curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/
 
 # install some base extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions @fix_letsencrypt mcrypt gmp gd zip pdo_mysql pdo_pgsql pgsql
+RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions @fix_letsencrypt mcrypt gmp gd zip pdo_mysql pdo_pgsql pgsql pcntl
 
 # install composer
 COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
