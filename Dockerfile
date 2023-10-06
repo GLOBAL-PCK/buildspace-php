@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y --force-yes \
     libssl1.0.0 \
     unzip \
     unoconv \
-    postgresql-client-15 \
     git \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
@@ -35,7 +34,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions @fix_letsencrypt mcrypt gmp gd zip pdo_pgsql pgsql pcntl
 
 # install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer;
+COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
 # install pear extensions
 RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
