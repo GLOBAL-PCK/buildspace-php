@@ -23,12 +23,10 @@ RUN apt-get update && apt-get install -y --force-yes \
     git \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
-
-# Download and extract wkhtmltopdf
-RUN curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb" -L -o "wkhtmltox.deb" && \
+    curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb" -L -o "wkhtmltox.deb" && \
     dpkg -i wkhtmltox.deb && \
-    rm -rf wkhtmltox.deb
+    rm -rf wkhtmltox.deb && \
+    rm -rf /var/lib/apt/lists/*
 
 # install some base extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/

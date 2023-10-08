@@ -19,10 +19,17 @@ jobs:
         with:
           username: ${{ secrets.CI_REGISTRY_USER }}
           password: ${{ secrets.CI_REGISTRY_PASSWORD }}
-      - name: Build And Push
+      - name: Build And Push 7.1
         run: |-
           docker buildx build \
             --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag xbbshampoo/buildspace-php:7.1-fpm \
-            --file ./Dockerfile ./
+            --file ./7-1.Dockerfile ./
+      - name: Build And Push 7.4
+        run: |-
+          docker buildx build \
+            --platform linux/amd64 \
+            --output "type=image,push=true" \
+            --tag xbbshampoo/buildspace-php:7.4-fpm \
+            --file ./7-4.Dockerfile ./
