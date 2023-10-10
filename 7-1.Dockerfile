@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y --force-yes \
     curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb" -L -o "wkhtmltox.deb" && \
     dpkg -i wkhtmltox.deb && \
     rm -rf wkhtmltox.deb && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
 # install some base extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -50,3 +51,8 @@ RUN wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stab
     cd .. && \
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable && \
     echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-libsodium.ini
+
+# copy fonts
+RUN mkdir -p /usr/share/fonts/truetype/buildspace && \
+    cp -r fonts/Arial /usr/share/fonts/truetype/buildspace/Arial && \
+    cp -r fonts/Courier /usr/share/fonts/truetype/buildspace/Courier
