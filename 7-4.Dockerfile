@@ -49,6 +49,5 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable
 
 # copy fonts
-RUN mkdir -p /usr/share/fonts/truetype/buildspace && \
-    cp -r ./fonts/Arial /usr/share/fonts/truetype/buildspace/Arial && \
-    cp -r ./fonts/Courier /usr/share/fonts/truetype/buildspace/Courier
+RUN mkdir -p /usr/share/fonts/truetype/buildspace
+COPY ./fonts/ /usr/share/fonts/truetype/buildspace/

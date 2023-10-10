@@ -53,6 +53,5 @@ RUN wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stab
     echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-libsodium.ini
 
 # copy fonts
-RUN mkdir -p /usr/share/fonts/truetype/buildspace && \
-    cp -r ./fonts/Arial /usr/share/fonts/truetype/buildspace/Arial && \
-    cp -r ./fonts/Courier /usr/share/fonts/truetype/buildspace/Courier
+RUN mkdir -p /usr/share/fonts/truetype/buildspace
+COPY ./fonts/ /usr/share/fonts/truetype/buildspace/
