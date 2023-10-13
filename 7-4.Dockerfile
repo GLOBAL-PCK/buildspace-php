@@ -1,7 +1,8 @@
 FROM php:7.4-fpm-buster
 
 # Install utility and libs needed by PHP extension
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get install -y \
     build-essential \
     zlib1g-dev \
     libzip-dev \

@@ -9,7 +9,8 @@ RUN sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list
 RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 
 # Install utility and libs needed by PHP extension
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get install -y --force-yes \
     build-essential \
     zlib1g-dev \
     libzip-dev \
