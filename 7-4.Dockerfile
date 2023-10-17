@@ -1,5 +1,8 @@
 FROM php:7.4-fpm-buster
 
+# Setup timezone
+ENV TZ="Asia/Kuala_Lumpur"
+
 # Install utility and libs needed by PHP extension
 RUN apt-get update && apt-get -y upgrade && \
     apt-get install -y \
