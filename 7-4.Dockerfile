@@ -41,16 +41,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
 
 # install libsodium
-RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz && \
-    tar xzvf libsodium-1.0.18-stable.tar.gz && \
-    cd libsodium-stable/ && \
-    ./configure && \
-    make && \
-    make check && \
-    make install && \
-    pecl install libsodium && \
-    cd .. && \
-    rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable
+RUN pecl install -f libsodium && \
+    echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-libsodium.ini
 
 # copy fonts
 RUN mkdir -p /usr/share/fonts/truetype/buildspace
