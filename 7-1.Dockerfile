@@ -4,7 +4,8 @@ FROM php:7.1.30-fpm-buster
 ENV TZ="Asia/Kuala_Lumpur"
 
 # Install utility and libs needed by PHP extension
-RUN apt-get update && apt-get -y upgrade && \
+RUN apt-get update && \
+    apt-get -y upgrade && \
     apt-get install -y \
     build-essential \
     zlib1g-dev \
@@ -16,8 +17,11 @@ RUN apt-get update && apt-get -y upgrade && \
     multiarch-support \
     ca-certificates \
     git \
+    gettext-base \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     curl "https://archive.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb" -L -o "libpng12.deb" && \
     dpkg -i libpng12.deb && \
     rm -rf libpng12.deb && \
