@@ -3,6 +3,10 @@ FROM php:7.0-fpm-stretch
 # Setup timezone
 ENV TZ="Asia/Kuala_Lumpur"
 
+RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list
+RUN sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list
+RUN sed -i '/stretch-updates/d' /etc/apt/sources.list
+
 # Install utility and libs needed by PHP extension
 RUN apt-get update && \
     apt-get -y upgrade && \
