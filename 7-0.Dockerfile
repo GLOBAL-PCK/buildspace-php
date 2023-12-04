@@ -3,12 +3,14 @@ FROM php:7.0-fpm-stretch
 # Setup timezone
 ENV TZ="Asia/Kuala_Lumpur"
 
-RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list
-RUN sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list
-RUN sed -i '/stretch-updates/d' /etc/apt/sources.list
+# install composer
+COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
 # Install utility and libs needed by PHP extension
-RUN apt-get update && \
+RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
+    sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list && \
+    sed -i '/stretch-updates/d' /etc/apt/sources.list && \
+    apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
     build-essential \
@@ -39,9 +41,6 @@ RUN apt-get update && \
 # install some base extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions gmp gd zip pdo_mysql pdo_pgsql pgsql pcntl mcrypt
-
-# install composer
-COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
 # install pear extensions
 RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
