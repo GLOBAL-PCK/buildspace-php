@@ -53,7 +53,7 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     pecl install libsodium && \
     cd .. && \
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable && \
-    echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-libsodium.ini
+    echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
 
 # copy fonts
 RUN mkdir -p /usr/share/fonts/truetype/buildspace

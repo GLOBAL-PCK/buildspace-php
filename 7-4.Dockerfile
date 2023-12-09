@@ -43,8 +43,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 insta
 RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
 
 # install libsodium
-RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz && \
-    tar xzvf libsodium-1.0.18-stable.tar.gz && \
+RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/releases/libsodium-1.0.19-stable.tar.gz && \
+    tar xzvf libsodium-1.0.19-stable.tar.gz && \
     cd libsodium-stable/ && \
     ./configure && \
     make && \
@@ -52,7 +52,7 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     make install && \
     pecl install libsodium && \
     cd .. && \
-    rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable
+    rm -rf libsodium-1.0.19-stable.tar.gz libsodium-stable
 
 # copy fonts
 RUN mkdir -p /usr/share/fonts/truetype/buildspace
