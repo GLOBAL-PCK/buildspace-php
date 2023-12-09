@@ -10,7 +10,6 @@ COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
-    build-essential \
     zlib1g-dev \
     libzip-dev \
     xfonts-base \

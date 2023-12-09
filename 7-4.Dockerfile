@@ -4,13 +4,12 @@ FROM php:7.4-fpm-buster
 ENV TZ="Asia/Kuala_Lumpur"
 
 # install composer
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
 # Install utility and libs needed by PHP extension
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
-    build-essential \
     zlib1g-dev \
     libzip-dev \
     xfonts-base \

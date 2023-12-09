@@ -13,7 +13,6 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
-    build-essential \
     zlib1g-dev \
     libzip-dev \
     xfonts-base \
