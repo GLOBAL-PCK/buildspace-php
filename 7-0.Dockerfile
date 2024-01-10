@@ -24,7 +24,6 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
     git \
     gettext-base \
     wget && \
-    vi && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
     curl "https://archive.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb" -L -o "libpng12.deb" && \
     dpkg -i libpng12.deb && \
