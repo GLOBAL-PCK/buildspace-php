@@ -34,7 +34,6 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
     curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb" -L -o "wkhtmltox.deb" && \
     dpkg -i wkhtmltox.deb && \
     rm -rf wkhtmltox.deb && \
-    chmod -R 777 /usr/local/bin/wkhtmltopdf && \
     ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf && \
     rm -rf /var/lib/apt/lists/*
 
