@@ -21,6 +21,7 @@ RUN apt-get update && \
     git \
     gettext-base \
     wget && \
+    vim && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
     curl "https://archive.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb" -L -o "libpng12.deb" && \
     dpkg -i libpng12.deb && \
@@ -31,6 +32,7 @@ RUN apt-get update && \
     curl "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb" -L -o "wkhtmltox.deb" && \
     dpkg -i wkhtmltox.deb && \
     rm -rf wkhtmltox.deb && \
+    chmod -R 777 /usr/local/bin/wkhtmltopdf && \
     ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf && \
     rm -rf /var/lib/apt/lists/*
 
