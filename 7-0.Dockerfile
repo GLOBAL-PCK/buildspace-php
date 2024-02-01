@@ -21,6 +21,7 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
     unoconv \
     multiarch-support \
     ca-certificates \
+    git \
     gettext-base \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \

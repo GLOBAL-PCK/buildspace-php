@@ -18,6 +18,7 @@ RUN apt-get update && \
     unoconv \
     multiarch-support \
     ca-certificates \
+    git \
     gettext-base \
     wget && \
     apt-get install -y --force-yes libreoffice --no-install-recommends && \
