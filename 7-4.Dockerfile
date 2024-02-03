@@ -6,6 +6,9 @@ ENV TZ="Asia/Kuala_Lumpur"
 # install composer
 COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
+# copy fonts
+COPY ./fonts/ /usr/share/fonts/truetype/buildspace/
+
 # Install utility and libs needed by PHP extension
 RUN apt-get update && \
     apt-get -y upgrade && \
@@ -52,6 +55,3 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     pecl install libsodium && \
     cd .. && \
     rm -rf libsodium-1.0.19-stable.tar.gz libsodium-stable
-
-# copy fonts
-COPY ./fonts/ /usr/share/fonts/truetype/buildspace/

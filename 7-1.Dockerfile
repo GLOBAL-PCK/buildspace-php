@@ -6,6 +6,9 @@ ENV TZ="Asia/Kuala_Lumpur"
 # install composer
 COPY --from=composer:lts /usr/bin/composer /usr/local/bin/composer
 
+# copy fonts
+COPY ./fonts/ /usr/share/fonts/truetype/buildspace/
+
 # Install utility and libs needed by PHP extension
 RUN apt-get update && \
     apt-get -y upgrade && \
@@ -53,6 +56,3 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     cd .. && \
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable && \
     echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
-
-# copy fonts
-COPY ./fonts/ /usr/share/fonts/truetype/buildspace/
