@@ -50,7 +50,8 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     make check && \
     make install && \
     pear channel-update pear.php.net && \
-    pecl install libsodium Numbers_Words-0.18.1 && \
+    pecl install libsodium && \
+    pecl install Numbers_Words-0.18.1 && \
     cd .. && \
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable && \
     echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
