@@ -38,7 +38,10 @@ RUN apt-get update && \
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions gmp gd zip pdo_pgsql pgsql pcntl mcrypt
 
-# install libsodium and Numbers_Words
+# install pear extensions
+RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
+
+# install libsodium
 RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/releases/libsodium-1.0.18-stable.tar.gz && \
     tar xzvf libsodium-1.0.18-stable.tar.gz && \
     cd libsodium-stable/ && \
@@ -46,9 +49,7 @@ RUN wget --secure-protocol=TLSv1_2 https://download.libsodium.org/libsodium/rele
     make && \
     make check && \
     make install && \
-    pear channel-update pear.php.net && \
     pecl install libsodium && \
-    pecl install Numbers_Words-0.18.1 && \
     cd .. && \
     rm -rf libsodium-1.0.18-stable.tar.gz libsodium-stable && \
     echo "extension=sodium.so" > /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
