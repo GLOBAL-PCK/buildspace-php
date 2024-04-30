@@ -41,8 +41,8 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list && \
     rm -rf /var/lib/apt/lists/*
 
 # install some base extensions
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && IPE_GD_WITHOUTAVIF=1 install-php-extensions gmp gd zip pdo_pgsql pgsql pcntl mcrypt intl
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN IPE_GD_WITHOUTAVIF=1 install-php-extensions gmp gd zip pdo_pgsql pgsql pcntl mcrypt intl
 
 # install pear extensions
 RUN pear channel-update pear.php.net && pear install Numbers_Words-0.18.1
